@@ -23,6 +23,7 @@ function getUserInfo() {
             if (res.status !== 0) {
                 return layui.layer.msg('获取用户信息失败！')
             }
+
             // 调用renderAvator函数，渲染用户昵称和头像
             renderAvator(res.data)
         }
@@ -32,11 +33,14 @@ function getUserInfo() {
 function renderAvator(user) {
     // 获取用户名称
     var name = user.nickname || user.username
+    var userpic = user.user_pic
+
+
     $('#welcome').html('欢迎&nbsp&nbsp' + name)
 
     if (user.user_pic !== null) {
         // 渲染图片头像
-        $('.layui-nav-img').attr('src', user_pic).show()
+        $('.layui-nav-img').attr('src', user.user_pic).show()
         $('.user_avator').hide()
     } else {
         // 渲染文本头像
